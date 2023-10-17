@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Vector2 movementDirection = Vector2.zero;
+    [SerializeField] protected Vector2 movementDirection = Vector2.zero;
     [SerializeField] private float speed = 0f;
     [SerializeField] private float accelerationTime = 0f;
     [SerializeField] private bool canAccelerate = false; 
@@ -22,17 +22,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (canAccelerate)
             accelerationTime += Time.deltaTime; 
         speed = settings.CalculateSpeed(accelerationTime) ; 
 
-        transform.position += (Vector3)MovementDirection * Time.deltaTime * speed; 
-    }
-
-    public void OnInputMovement(InputAction.CallbackContext _context)
-    {
-        MovementDirection = _context.ReadValue<Vector2>();
+        transform.position += (Vector3)movementDirection * Time.deltaTime * speed; 
     }
 }
