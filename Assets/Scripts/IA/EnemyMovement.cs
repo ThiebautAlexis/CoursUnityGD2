@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class EnemyMovement : PlayerMovement
 {
-    [SerializeField] protected Transform target; 
-   
-    protected override void Update()
+    [SerializeField] private Transform target;
+    [SerializeField] private float stoppingDistance = .25f;
+    [SerializeField] private float steeringForce = 10f; 
+    private Vector3 targetDirection; 
+    protected override void MovementUpdate()
     {
-        Vector3 _temp = Vector3.MoveTowards(MovementDirection, (target.position - transform.position), Time.deltaTime);
-        if (_temp.magnitude > 1f) _temp.Normalize();
-        MovementDirection = _temp;
-        base.Update();    }
+        targetDirection = (target.position - transform.position);
+        if(targetDirection.sqrMagnitude < stoppingDistance * stoppingDistance) 
+        {
+            MovementDirection = Vector2.zero;
+            return; 
+        }
+        MovementDirection = Vector2.MoveTowards(movementDirection, targetDirection, steeringForce * Time.deltaTime);
+        base.MovementUpdate();
+    }
+
 }
