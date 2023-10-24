@@ -20,4 +20,18 @@ public class EnemyMovement : PlayerMovement
         base.MovementUpdate();
     }
 
+    private void Start()
+    {
+        target = PlayerController.Instance.transform;
+    }
+
+    [SerializeField] private Color gizmosColor = Color.white; 
+    private void OnDrawGizmos()
+    {
+        if(target != null)
+        {
+            Gizmos.color = gizmosColor; 
+            Gizmos.DrawLine(transform.position, target.position);
+        }
+    }
 }

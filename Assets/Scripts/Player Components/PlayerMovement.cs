@@ -36,6 +36,4 @@ public class PlayerMovement : MonoBehaviour
         transform.position += (Vector3)movementDirection * Time.deltaTime * speed;
 
     }
-
-    
 }

@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     /// Play the Particle System and reset the cooldown.
     /// </summary>
     /// <param name="_fireDirection"></param>
-    public void FireWeapon(Vector2 _fireDirection)
+    public void FireWeapon()
     {
         currentCooldown = 0f; 
         // Set the projectile direction according to the fire direction
