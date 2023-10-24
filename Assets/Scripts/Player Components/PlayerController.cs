@@ -25,8 +25,9 @@ public class PlayerController : MonoBehaviour
 
     #region Fields and Properties
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerWeapons playerWeapons; 
-    #endregion
+    [SerializeField] private PlayerWeapons playerWeapons;
+    [SerializeField] private new Camera camera; 
+    #endregion 
 
     #region Inputs Methods
     public void OnInputMovement(InputAction.CallbackContext _context)
@@ -36,7 +37,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnFireDirection(InputAction.CallbackContext _context) 
     {
-        playerWeapons.FireDirection = _context.ReadValue<Vector2>();
+        Vector2 _mousePosition = _context.ReadValue<Vector2>();
+        
+        Vector2 _mousePositionToWorld = camera.ScreenToWorldPoint(_mousePosition);
+        playerWeapons.FireDirection = (_mousePositionToWorld - (Vector2)transform.position);
     }
     #endregion
 
