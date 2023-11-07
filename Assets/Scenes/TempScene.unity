@@ -498,10 +498,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCreature: {fileID: 7661082586566376044, guid: 7f9baf22333a2744b88f55f29bd47aca, type: 3}
-  spawnCount: 15
-  spawnFrequency: 5
+  spawnCount: 1
+  spawnFrequency: 1
   spawnRange: 5
-  behaviour: 1
+  behaviour: 0
 --- !u!4 &699564808
 Transform:
   m_ObjectHideFlags: 0
@@ -736,6 +736,7 @@ GameObject:
   - component: {fileID: 1450246374}
   - component: {fileID: 1450246373}
   - component: {fileID: 1450246372}
+  - component: {fileID: 1450246375}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -784,7 +785,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -809,6 +810,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1450246375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450246371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &991276809087243010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -817,6 +835,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 19848271175670655, guid: 03705c7faceab744fb8d99496745bd1b, type: 3}
+      propertyPath: damages
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1423834612843563240, guid: 03705c7faceab744fb8d99496745bd1b, type: 3}
       propertyPath: m_Name
       value: Player

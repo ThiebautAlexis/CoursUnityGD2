@@ -10,16 +10,16 @@ public class UIScore : MonoBehaviour
 
     private void Start()
     {
-        PlayerController.UpdateScore += UpdateScore; 
+        PlayerController.UpdateScore += UpdateScoreUI; 
     }
 
     private void OnDestroy()
     {
-        PlayerController.UpdateScore -= UpdateScore;
+        PlayerController.UpdateScore -= UpdateScoreUI;
     }
 
-    public void UpdateScore(int _score = 0)
+    public void UpdateScoreUI(int _score = 0)
     {
-        scoreText.text = _score.ToString("000 000");
+        scoreText.SetText($"Score : {_score.ToString("000 000")} points");
     }
 }

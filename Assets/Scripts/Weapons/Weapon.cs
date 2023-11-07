@@ -38,7 +38,10 @@ public class Weapon : MonoBehaviour
     /// <param name="other"></param>
     private void OnParticleCollision(GameObject other)
     {
-        Destroy(other);
-        PlayerController.AddScore(100);
+        if(other.TryGetComponent(out Damageable _damageable))
+        {
+            _damageable.TakeDamages(damages); 
+            //PlayerController.AddScore(100);
+        }
     }
 }
