@@ -12,6 +12,13 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float spawnRange = 5.0f; 
     private float spawnTimer = 0.0f;
 
+    [SerializeField] private SpawnBehaviour behaviour = SpawnBehaviour.Random; 
+    private enum SpawnBehaviour
+    {
+        Random, 
+        Circle
+    }
+
     private void Update()
     {
         spawnTimer += Time.deltaTime;
@@ -23,15 +30,33 @@ public class SpawnManager : MonoBehaviour
     private void SpawnCreatures()
     {
         spawnTimer = 0f;
-
+        Vector2 _offset; 
         for (int i = 0; i < spawnCount; i++)
         {
-            spawnPosition = (Vector2)PlayerController.Instance.transform.position + 
-                (new Vector2(Mathf.Cos(Random.Range(-180f, 180f) * Mathf.Deg2Rad), 
-                             Mathf.Sin(Random.Range(-180f, 180f) * Mathf.Deg2Rad)
-                            ) * spawnRange); 
+            switch (behaviour)
+            {
+                case SpawnBehaviour.Circle:
+                    _offset = GetCirclePosition(i);
+                    break;
+                default:
+                    _offset = GetRandomPosition();
+                    break;
+            }
+            spawnPosition = (Vector2)PlayerController.Instance.transform.position + _offset * spawnRange; 
             Instantiate(spawnCreature, spawnPosition, Quaternion.identity);
         }
+    }
+
+    private Vector2 GetCirclePosition(int _currentIndex)
+    {
+        float _theta = Mathf.Lerp(-180, 180, (float)_currentIndex / spawnCount);
+        return new Vector2(Mathf.Cos(_theta), Mathf.Sin(_theta));
+    }
+
+    private Vector2 GetRandomPosition()
+    {
+        float _randomTheta = Random.Range(-180, 180) * Mathf.Deg2Rad;
+        return new Vector2(Mathf.Cos(_randomTheta), Mathf.Sin(_randomTheta));
     }
 
     private void OnDrawGizmos()

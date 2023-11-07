@@ -38,7 +38,7 @@ public class Weapon : MonoBehaviour
     /// <param name="other"></param>
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("PAF!");
-        Destroy(other); 
+        Destroy(other);
+        PlayerController.AddScore(100);
     }
 }

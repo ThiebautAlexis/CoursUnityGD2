@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -48,6 +48,17 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Instance = this; 
+    }
+    #endregion
+
+    #region Score
+    private static int score = 0;
+    public static event Action<int> UpdateScore;
+
+    public static void AddScore(int _points)
+    {
+        score += _points;
+        UpdateScore?.Invoke(score);
     }
     #endregion
 
